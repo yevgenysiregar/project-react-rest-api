@@ -50,9 +50,21 @@ export default class AddPosts extends Component {
     event.preventDefault();
     axios
       .put("https://jsonplaceholder.typicode.com/posts/1", {
-        title: "Hello",
-        body: "Cheers!"
+        title: this.state.title,
+        body: this.state.body
       })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  deletePosts = event => {
+    event.preventDefault();
+    axios
+      .delete("https://jsonplaceholder.typicode.com/posts/1")
       .then(response => {
         console.log(response);
       })
@@ -90,6 +102,12 @@ export default class AddPosts extends Component {
             value="Update Post"
             name="Update"
             onClick={this.updatePosts}
+          />
+          <input
+            type="submit"
+            value="Delete Post"
+            name="Update"
+            onClick={this.deletePosts}
           />
         </form>
       </div>
